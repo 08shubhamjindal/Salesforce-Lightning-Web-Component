@@ -1,0 +1,41 @@
+<template>
+    <div>
+        <lightning-layout>
+        <lightning-layout-item padding="around-small">
+            <lightning-input name="input1" label="Enter Company Name" onkeyup={getInputValue}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small">
+                <lightning-combobox
+                name="progress"
+                label="Status"
+                value={value}
+                placeholder="Select Company"
+                options={optionvalue}
+                onchange={handleChange} >
+               </lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="2" medium-device-size="2" large-device-size="2" padding="around-small">
+        <button onclick={getDataofCompany}  >Get Data</button>
+        </lightning-layout-item>
+        </lightning-layout>
+        </div>
+        <lightning-card>
+        <template if:true={wholeData}>    
+            <div class="slds-p-around_medium" id="modal-content-id-1">
+                    <div style="font-size: 20px"><h1>Data of {selectedcompnay}  </h1></div><br/>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="Open">Open</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>: {wholeData.open}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="High">High</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>: {wholeData.high}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="Low">Low</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>: {wholeData.low}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="Close">Close</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>: {wholeData.close}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="volume">volume</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>: {wholeData.volume }</b></dd>
+                    </dl>
+            </div>
+        </template>
+    </lightning-card>
+</template>
