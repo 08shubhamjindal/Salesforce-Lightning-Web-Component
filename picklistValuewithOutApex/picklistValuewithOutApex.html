@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Picklist Value Component" icon-name="custom:custom65">
+        sfdvdgb
+        <div class="slds-p-around_small">
+            <lightning-combobox name="AccountSource" 
+                label="Account Source" value={value} placeholder="-Select-"
+                options={pickListvalues} onchange={handleChange}>
+            </lightning-combobox>
+            <lightning-combobox name="Industry" 
+                label="Industry By Record type" value={value} placeholder="-Select-"
+                options={pickListvaluesByRecordType} onchange={handleChange}>
+            </lightning-combobox>
+            <lightning-combobox name="AccountSource" 
+                label="Account Source By Record Type" value={value} placeholder="-Select-"
+                options={accountsource} onchange={handleChange}>
+            </lightning-combobox>
+        </div>
+    </lightning-card>    
+</template>
