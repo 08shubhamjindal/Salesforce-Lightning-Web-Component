@@ -1,0 +1,17 @@
+<template>
+    <lightning-card>
+     <strong><p>Account</p></strong>
+     <strong>{barVal}</strong>
+     <br/>
+     <template if:true={accId}>
+     These Account Id and Name shows from Child without hitting The Apex <br/><strong>{accId}</strong><br/><strong>{accName}</strong><br/>
+    </template>
+    <c-child-component oncallparent={passToParent} ongettingidfromchild ={AccountIdByChild}></c-child-component>
+    
+    <input  onkeyup={getAccountinJs}></input>
+    <template for:each={accountsrecord} for:item=item for:index=index>
+          {index}-> {item.Name}
+          <br key={item.index}/>
+    </template>
+</lightning-card>
+</template>

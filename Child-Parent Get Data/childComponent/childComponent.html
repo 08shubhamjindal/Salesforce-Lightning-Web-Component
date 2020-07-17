@@ -1,0 +1,8 @@
+<template>
+    <lightning-input name='barMeter' label='Enter Value for Progress Bar' onchange={progress}></lightning-input>
+    <template for:each={accounts} for:item=item for:index="index">
+             <p key = {item.index}>{item.Id} {item.Name}</p>
+      <button key={item.index} data-key={item.Id} data-key1={item.Name} onclick={sendIdtoParent}>Account Id</button>        
+    </template>
+    
+</template>
