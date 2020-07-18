@@ -1,0 +1,9 @@
+<template>
+    <lightning-card>
+        <template if:true={contactId}>
+        This Contact Id Clicked on Child but show in Parent <Strong>{contactId}</Strong>
+        </template>
+        <lightning-button variant="brand" label="Get Contacts" onclick={getContacts}></lightning-button>
+        <c-child-comp-for-par-to-child ongettingidfromchild ={contactIDbychild}></c-child-comp-for-par-to-child>
+    </lightning-card>
+</template>
