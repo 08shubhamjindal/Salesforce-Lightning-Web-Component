@@ -1,0 +1,22 @@
+<template>
+    <lightning-card>
+    
+        <lightning-layout>
+            <template if:true={hasRendered}>
+            <lightning-layout-item>
+                <lightning-input value = {value} onchange={storeInputValue}></lightning-input>
+                <lightning-button label = "Next" onclick={getInputValue}></lightning-button>
+            </lightning-layout-item>
+            </template>
+
+            <template if:true={hasRendered1}>
+                <lightning-layout-item>
+                    <lightning-input  onchange={storeInputValue}></lightning-input>
+                    <lightning-input  onchange={storeInputValue}></lightning-input>
+                    <lightning-button label = "NextAgain" onclick={getInputValue}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </lightning-card>
+</template>
