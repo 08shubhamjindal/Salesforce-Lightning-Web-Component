@@ -1,23 +1,14 @@
 import { LightningElement, track, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import inseertAccount from '@salesforce/apex/CreateAccountByCommunity.inseertAccount'
 export default class CreateAccountByCommunity extends LightningElement {
 
     @track value = "Hi Enter Something Here";
+    @track accountNumber;
     @track index = 1;
     @track first = 'Enable';
     @track second = 'Disable'
 
-    // @track myVariable;
-
-    // set index(value) {
-    //   console.log(value)
-    //   this.myVariable = value;
-    //  }
-
-    // @api
-    // get index(){
-    //     return(this.myVariable === 0)
-    // }
 
     get hasRendered(){
       console.log('count--->'+this.index);
@@ -36,16 +27,15 @@ export default class CreateAccountByCommunity extends LightningElement {
     }
 
 
-    storeInputValue(event){
+    storeAccountName(event){
        this.value = event.detail.value;
     }
 
-    getInputValue(){
-      console.log(this.value)
+    getAccountName(){
       if(this.value==undefined || this.value==""){
         const evt = new ShowToastEvent({
-          title: 'Input Field is Blank',
-          message: 'Enter Some thing in Input Field',
+          title: 'Account Name Field is Blank',
+          message: 'Enter Some thing in Name Field',
           variant: 'error',
          });
         this.dispatchEvent(evt);
@@ -53,6 +43,43 @@ export default class CreateAccountByCommunity extends LightningElement {
            this.first = 'Disable';
            this.index = 2;
            this.second = 'Enable';
+      }
+    }
+
+    storeAccountNumber(event){
+         this.accountNumber = event.detail.value;
+    }
+
+    previousAction(){
+      this.first = 'Enable';
+      this.index = 1;
+      this.second = 'Disable';
+    }
+
+    getAccountNumber(){
+      if(this.accountNumber==undefined || this.accountNumber==""){
+        const evt = new ShowToastEvent({
+          title: 'Account Number Field is Blank',
+          message: 'Enter Some thing in Account Number Field',
+          variant: 'error',
+         });
+        this.dispatchEvent(evt);
+      }else{
+          console.log('now i am here')
+          inseertAccount({
+            Name : this.value,
+            numberss : this.accountNumber
+          }).then(data=>{
+             console.log(data);
+             const evt = new ShowToastEvent({
+              title: 'Account Created',
+              message: 'Success',
+              variant: 'success',
+             });
+            this.dispatchEvent(evt);
+          }).catch(err=>{
+
+          })
       }
     }
 }

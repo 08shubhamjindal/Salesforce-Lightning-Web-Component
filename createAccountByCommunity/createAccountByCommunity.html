@@ -4,16 +4,17 @@
         <lightning-layout>
             <template if:true={hasRendered}>
             <lightning-layout-item>
-                <lightning-input value = {value} onchange={storeInputValue}></lightning-input>
-                <lightning-button label = "Next" onclick={getInputValue}></lightning-button>
+
+                <lightning-input value = {value} label="Account Name" onchange={storeAccountName}></lightning-input>
+                <lightning-button label = "Next" onclick={getAccountName}></lightning-button>
             </lightning-layout-item>
             </template>
 
             <template if:true={hasRendered1}>
                 <lightning-layout-item>
-                    <lightning-input  onchange={storeInputValue}></lightning-input>
-                    <lightning-input  onchange={storeInputValue}></lightning-input>
-                    <lightning-button label = "NextAgain" onclick={getInputValue}></lightning-button>
+                    <lightning-input label="Account Number" onchange={storeAccountNumber}></lightning-input>
+                    <lightning-button label = "Previous" onclick={previousAction}></lightning-button>
+                    <lightning-button label = "Submit" onclick={getAccountNumber}></lightning-button>
                 </lightning-layout-item>
             </template>
 
