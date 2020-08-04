@@ -15,5 +15,5 @@
             <property name="selectedAccs" type="String[]" label="Selected Accounts" description="Selected Account Ids"/>
             <property name="selectedAccsString" type="String" label="Selected Accounts String" description="Selected Account Ids"/>
         </targetConfig>
-    </targetConfigs>    
+    </targetConfigs>
 </LightningComponentBundle>

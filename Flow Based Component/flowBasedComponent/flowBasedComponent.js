@@ -6,6 +6,8 @@ export default class FlowBasedComponent extends LightningElement {
     @api Accs = [];
 
     handleCheck(event) {
+        console.log(event)
+        console.log(event.currentTarget.name);
         if(!this.selectedAccs.includes(event.currentTarget.name))
             this.selectedAccs.push(event.currentTarget.name);
         else {
@@ -14,7 +16,6 @@ export default class FlowBasedComponent extends LightningElement {
                 this.selectedAccs.splice(i, 1);
             }
         }
-        
         this.selectedAccsString = JSON.stringify(this.selectedAccs);
         
     }

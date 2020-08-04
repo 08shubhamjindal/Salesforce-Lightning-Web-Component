@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Contact List" icon-name="standard:contact">
+        <div class="slds-p-around_x-small">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <tbody>
+                    <template for:each={Contt} for:item="con"> 
+                        <tr key={con.Id} class="slds-hint-parent">                           
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Id">{con.Id}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="LastName">{con.LastName}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="LastName">{con.AccountId}</div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>
