@@ -1,0 +1,11 @@
+<template>
+    <h1>Another Things </h1>
+    <lightning-card>
+    <template if:true={data}>
+        <template for:each={data} for:item="acc">
+           <p key={acc.Id}>{acc.id}</p>
+           <p key={acc.Id}>{acc.name}</p>
+        </template>
+    </template>
+    </lightning-card>
+</template>
