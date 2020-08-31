@@ -7,11 +7,7 @@
             type="search"
         ></lightning-input>
     </div>
-    <p if:true={queryTerm}>
-        Jindal Searched for {queryTerm}!
-    </p>
-
-
+    
     <div class="slds-grid slds-wrap">
     <template for:each={data} for:item="mov">
         <div key={mov.movie_title} class="slds-col slds-size_1-of-2">
