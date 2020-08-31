@@ -1,0 +1,28 @@
+<template>
+
+    <div onkeyup={handleKeyUp}>
+        <lightning-input
+            name="enter-search"
+            label="Search when user hits the 'enter' key"
+            type="search"
+        ></lightning-input>
+    </div>
+    <p if:true={queryTerm}>
+        Jindal Searched for {queryTerm}!
+    </p>
+
+
+    <div class="slds-grid slds-wrap">
+    <template for:each={data} for:item="mov">
+        <div key={mov.movie_title} class="slds-col slds-size_1-of-2">
+            <lightning-card  title={mov.movie_title}>
+                <lightning-button label="Select" slot="actions"></lightning-button>
+                <p class="slds-p-horizontal_small">{mov.director_name}</p>
+                <p class="slds-p-horizontal_small">{mov.actor_1_name}</p>
+                <p class="slds-p-horizontal_small">{mov.actor_2_name}</p>
+            </lightning-card>
+        </div>
+    </template>
+    </div>
+
+</template>
