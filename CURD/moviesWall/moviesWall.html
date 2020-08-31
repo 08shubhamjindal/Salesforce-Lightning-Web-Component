@@ -1,13 +1,50 @@
 <template>
 
-    <div onkeyup={handleKeyUp}>
-        <lightning-input
-            name="enter-search"
-            label="Search when user hits the 'enter' key"
-            type="search"
-        ></lightning-input>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_5-of-6" onkeyup={handleKeyUp}>
+            <lightning-input
+                name="enter-search"
+                label="Search"
+                type="search"
+            ></lightning-input>
+        </div>
+        
+        <div class="slds-col slds-size_1-of-6">
+            <lightning-button label="Add New Movies" variant="brand" onclick={handleOpenModal}>
+            </lightning-button>
+        </div>
     </div>
-    
+
+    <template if:true={isOpenModal}>
+        <div style="height: 500px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                            <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="Close" size="medium">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Movies</h2>
+                    </header>
+
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-text-heading_small slds-text-align_center">
+                            <lightning-input type="text" label="Enter Movie Name" placeholder="type here..." onchange={handleMovieName}></lightning-input>
+                        </div>
+                    </div>
+                    
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral" onclick={handleCloseModal}></lightning-button>
+                        <lightning-button label="Save" variant="neutral" onclick={handleSave}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+        </div>
+    </template>
+
+
+
     <div class="slds-grid slds-wrap">
     <template for:each={data} for:item="mov">
         <div key={mov.movie_title} class="slds-col slds-size_1-of-2">

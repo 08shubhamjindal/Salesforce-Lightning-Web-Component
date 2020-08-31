@@ -1,11 +1,36 @@
 import { LightningElement, track } from 'lwc';
 import getDataOfMovies from '@salesforce/apex/movies.getDataOfMovies'
+import postMovies from '@salesforce/apex/movies.postMovies'
+
 export default class MoviesWall extends LightningElement {
 @track data =[];
 @track duplicate;
 @track newOne = [];
 @track queryTerm;
+@track isOpenModal = false;
+@track movieName = "";
 
+handleOpenModal() {
+    this.isOpenModal = true;
+}
+
+handleCloseModal() {
+    this.isOpenModal = false;
+}
+handleSave(){
+  postMovies({movieName : this.movieName})
+  .then(res=>{
+    console.log(res)
+    this.handleCloseModal();
+  })
+  .catch(err=>{
+      console.log(err);
+  })
+}
+
+handleMovieName(event){
+    this.movieName = event.target.value;
+}
 async connectedCallback(){
     let endpointURL = 'http://starlord.hackerearth.com/movies';
     this.duplicate = await getDataOfMovies({strEndPointURL : endpointURL})

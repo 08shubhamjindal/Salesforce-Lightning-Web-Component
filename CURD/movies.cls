@@ -53,7 +53,14 @@ public with sharing class movies {
         return wResp;
     }
 
+    
+    @AuraEnabled
+    public static string postMovies(String movieName){
+        
+      System.debug('movieName'+ movieName);
 
+      return 'done';
+    }
     // @AuraEnabled
     // public static list<responseWrapper1> postDataOfMovies(String Name, String actor_Name){
 
