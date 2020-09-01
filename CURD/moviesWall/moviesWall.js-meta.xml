@@ -9,4 +9,11 @@
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
       </targets>
+
+      <targetConfigs>
+        <targetConfig targets="lightning__HomePage,lightning__RecordPage">
+            <property name="endpointURL" type="String" default="www.google.com" label="Enter the Api URL"/>
+        </targetConfig>
+      </targetConfigs>
+
 </LightningComponentBundle>

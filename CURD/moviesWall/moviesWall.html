@@ -1,5 +1,5 @@
 <template>
-
+    
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_5-of-6" onkeyup={handleKeyUp}>
             <lightning-input
@@ -33,7 +33,7 @@
                             <lightning-input type="text" label="Enter Movie Name" placeholder="type here..." onchange={handleMovieName}></lightning-input>
                         </div>
                     </div>
-                    
+
                     <footer class="slds-modal__footer">
                         <lightning-button label="Cancel" variant="neutral" onclick={handleCloseModal}></lightning-button>
                         <lightning-button label="Save" variant="neutral" onclick={handleSave}></lightning-button>
@@ -42,9 +42,7 @@
             </section>
         </div>
     </template>
-
-
-
+    
     <div class="slds-grid slds-wrap">
     <template for:each={data} for:item="mov">
         <div key={mov.movie_title} class="slds-col slds-size_1-of-2">

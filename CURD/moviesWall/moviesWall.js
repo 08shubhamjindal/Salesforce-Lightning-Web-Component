@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import getDataOfMovies from '@salesforce/apex/movies.getDataOfMovies'
 import postMovies from '@salesforce/apex/movies.postMovies'
 
@@ -10,6 +10,7 @@ export default class MoviesWall extends LightningElement {
 @track isOpenModal = false;
 @track movieName = "";
 
+@api endpointURL;
 handleOpenModal() {
     this.isOpenModal = true;
 }
@@ -32,8 +33,8 @@ handleMovieName(event){
     this.movieName = event.target.value;
 }
 async connectedCallback(){
-    let endpointURL = 'http://starlord.hackerearth.com/movies';
-    this.duplicate = await getDataOfMovies({strEndPointURL : endpointURL})
+    //let endpointURL = 'http://starlord.hackerearth.com/movies';
+    this.duplicate = await getDataOfMovies({strEndPointURL : this.endpointURL})
 
     for(let i=0; i<20; i++){
         let obj = {
