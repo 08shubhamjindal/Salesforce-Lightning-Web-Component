@@ -1,157 +1,203 @@
 <template>
-	<lightning-card title="ACR Record Details">
-             
-				<div class="slds-form__row">
+  <lightning-card title="ACR Record Details">
+    <div class="slds-form__row">
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">RelationShip Name</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy RelationShip Name</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                    
-					<div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">RelationShip Name</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                     <p>Dummy RelationShip Name</p>
-								</div>
-							</div>
-						</div>
-					</div>
-                    
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Source Category</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy Category</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-					<div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Source Category</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                     <p>Dummy Category</p>
-								</div>
-							</div>
-						</div>
-					</div>
+    <div class="slds-form__row">
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Marketing Initiative</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy Marketing Initiative</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Employer Name</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <template if:true={firstInputBox}>
+                <div class="slds-form-element">
+                  <div class="slds-form-element__control">
+                    <input
+                      type="text"
+                      data-id="text-input-id-1"
+                      value={updateOne}
+                      required=""
+                      class="slds-input"
+                    />
+                  </div>
                 </div>
-                
+              </template>
 
+              <template if:true={firstOutput}>
+                <p>{updateOne}</p>
+              </template>
+            </div>
+            <template if:true={firstOutput}>
+              <button
+                onclick={handle}
+                class="slds-button slds-button_icon"
+                title="Edit: Assigned To"
+              >
+                <lightning-icon
+                  icon-name="utility:edit"
+                  size="xx-small"
+                  alternative-text="Edit"
+                  title="Edit"
+                ></lightning-icon>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
 
-				<div class="slds-form__row">
+    <div class="slds-form__row">
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Marketing Source</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy Marketing Source</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                    <div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Marketing Initiative</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                     <p>Dummy Marketing Initiative</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Employer Name</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static"> 
-
-                                    <template if:true = {firstInputBox}>
-                                        <div class="slds-form-element">
-                                            <div class="slds-form-element__control">
-                                              <input type="text" data-id="text-input-id-1" value={updateOne} required="" class="slds-input" />
-                                            </div>
-                                        </div>
-                                    </template>
-
-                                       <template if:true = {firstOutput}>
-                                           <p>{updateOne}</p>
-                                       </template>
-
-                                </div>
-                                <template if:true = {firstOutput}>
-								<button onclick={handle} class="slds-button slds-button_icon" title="Edit: Assigned To">
-									<lightning-icon icon-name="utility:edit" size = "xx-small" alternative-text="Edit" title="Edit"></lightning-icon>
-                                </button>
-                            </template>
-							</div>
-						</div>
-                    </div>
-                    
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Occupation Group</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <template if:true={firstInputBox}>
+                <div class="slds-form-element__control">
+                  <lightning-combobox
+                    name="progress"
+                    value={updateTwoValue}
+                    options={options}
+                    onchange={handleChange}
+                  ></lightning-combobox>
                 </div>
+              </template>
 
+              <template if:true={firstOutput}>
+                <p>{updateTwo}</p>
+              </template>
+            </div>
+            <template if:true={firstOutput}>
+              <button
+                onclick={handle}
+                class="slds-button slds-button_icon"
+                title="Edit: Assigned To"
+              >
+                <lightning-icon
+                  icon-name="utility:edit"
+                  size="xx-small"
+                  alternative-text="Edit"
+                  title="Edit"
+                ></lightning-icon>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                <div class="slds-form__row">
+    <div class="slds-form__row">
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Prospect Creation Date</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy Prospect Creation Date</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                    <div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Marketing Source</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                     <p>Dummy Marketing Source</p>
-								</div>
-							</div>
-						</div>
-					</div>
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"
+        >
+          <span class="slds-form-element__label">Origin</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy origin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-					<div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Occupation Group</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-
-                                    <template if:true = {firstInputBox}>
-                                        <div class="slds-form-element">
-                                            <div class="slds-form-element__control">
-                                              <input type="text" data-id="text-input-id-2" value={updateTwo} required="" class="slds-input" />
-                                            </div>
-                                        </div>
-                                    </template>
-
-                                       <template if:true = {firstOutput}>
-                                           <p>{updateTwo}</p>
-                                       </template>
-
-                                </div>
-                                <template if:true = {firstOutput}>
-								<button onclick={handle} class="slds-button slds-button_icon" title="Edit: Assigned To">
-									<lightning-icon icon-name="utility:edit" size = "xx-small" alternative-text="Edit" title="Edit"></lightning-icon>
-                                </button>
-                            </template>
-							</div>
-						</div>
-                    </div>
-                    
-                </div>
-                
-                <div class="slds-form__row">
-
-                    <div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Prospect Creation Date</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                     <p> Dummy Prospect Creation Date</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-                    <div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent"> <span class="slds-form-element__label">Origin</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                     <p>Dummy origin</p>
-								</div>
-							</div>
-						</div>
-					</div>
-                    
-                </div>
-
-                <div class="slds-form__row">
-					<div class="slds-form__item" role="listitem">
-						<div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent slds-form-element_1-col"> <span class="slds-form-element__label">Prospect Score</span>
-							<div class="slds-form-element__control">
-								<div class="slds-form-element__static">
-                                    <p>Dummy Prospect Score</p>
-                               </div>
-							</div>
-						</div>
-					</div>
-                </div>
-                <template if:true = {firstInputBox}>
-             <lightning-button variant="brand" label="Cancel" title="Looks like a link" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
-             <lightning-button variant="brand" label="Save" title="Primary action" onclick={handleSave} class="slds-m-left_x-small"></lightning-button>
-             </template>
-	</lightning-card>
+    <div class="slds-form__row">
+      <div class="slds-form__item" role="listitem">
+        <div
+          class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent slds-form-element_1-col"
+        >
+          <span class="slds-form-element__label">Prospect Score</span>
+          <div class="slds-form-element__control">
+            <div class="slds-form-element__static">
+              <p>Dummy Prospect Score</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <template if:true={firstInputBox}>
+      <lightning-button
+        variant="brand"
+        label="Cancel"
+        title="Looks like a link"
+        onclick={handleCancel}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+      <lightning-button
+        variant="brand"
+        label="Save"
+        title="Primary action"
+        onclick={handleSave}
+        class="slds-m-left_x-small"
+      ></lightning-button>
+    </template>
+  </lightning-card>
 </template>
