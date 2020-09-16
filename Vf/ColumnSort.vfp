@@ -1,0 +1,54 @@
+<apex:page standardController="Account" recordSetVar="Accountvar" action="{!ViewData}" extensions="AccountListViewController">
+
+<apex:sectionHeader title="My Accounts" subtitle="Account List View"/>
+    <apex:form >
+        <apex:pageBlock >
+          <apex:pageMessages id="error" />
+
+           <apex:pageBlockSection id="blocktable" >
+                <apex:pageBlockTable value="{!wrapAccountList}" var="t" rendered="{!NOT(ISNULL(wrapAccountList))}" id="cmdsort">
+                        <apex:column ><apex:inputCheckbox value="{!t.selected}" id="inputId"/></apex:column>
+                    
+                        <apex:column >
+                            <apex:facet name="header">   
+                                <apex:commandLink action="{!ViewData}" value="Account Name{!IF(ExpressionSort=='name',IF(DirectionOfSort == 'ASC', '▼', '▲'),'')}">
+                                    <apex:param value="name" name="column" assignTo="{!ExpressionSort}" ></apex:param>
+                                </apex:commandLink>
+                            </apex:facet>
+                            <apex:outputLink value="/{!t.acc.Id}" target="_blank">{!t.acc.Name}</apex:outputLink>
+                        </apex:column>
+                    
+                        <apex:column >
+                            <apex:facet name="header">   
+                                <apex:commandLink action="{!ViewData}" value="BillingState/Province{!IF(ExpressionSort=='BillingState',IF(DirectionOfSort == 'ASC', '▼', '▲'),'')}">
+                                    <apex:param value="BillingState" name="column" assignTo="{!ExpressionSort}" ></apex:param>
+                                </apex:commandLink>
+                            </apex:facet>
+                            <apex:outputField value="{!t.acc.BillingState}"/>
+                        </apex:column>
+                       
+                        <apex:column >
+                            <apex:facet name="header">   
+                                <apex:commandLink action="{!ViewData}" value="Phone{!IF(ExpressionSort=='Phone',IF(DirectionOfSort == 'ASC', '▼', '▲'),'')}">
+                                    <apex:param value="Phone" name="column" assignTo="{!ExpressionSort}" ></apex:param>
+                                </apex:commandLink>
+                            </apex:facet>
+                            <apex:outputField value="{!t.acc.Phone}"/>
+                        </apex:column>
+                    
+                    
+                        <apex:column >
+                            <apex:facet name="header">   
+                                <apex:commandLink action="{!ViewData}" value="Type{!IF(ExpressionSort=='Type',IF(DirectionOfSort == 'ASC', '▼', '▲'),'')}">
+                                    <apex:param value="Type" name="column" assignTo="{!ExpressionSort}" ></apex:param>
+                                </apex:commandLink>
+                            </apex:facet>
+                            <apex:outputField value="{!t.acc.Type}"/>
+                        </apex:column>
+                    
+                </apex:pageBlockTable>
+           </apex:pageBlockSection>   
+        </apex:pageBlock>
+        <apex:commandButton value="Show Selected Accounts" action="{!processSelected}" />
+    </apex:form>
+</apex:page>
