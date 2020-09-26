@@ -17,6 +17,7 @@ public with sharing class movies {
         list<responseWrapper1> wResp = new list<responseWrapper1>();
         String strResponse = null;
         if(String.isNotBlank(strEndPointURL)) {
+
             HttpRequest httpRequest = new HttpRequest();  
             httpRequest.setEndpoint(strEndPointURL);
 
@@ -25,6 +26,7 @@ public with sharing class movies {
             httpRequest.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId()); 
             
             try {  
+
                 Http http = new Http();   
                 HttpResponse httpResponse = http.send(httpRequest);  
 
@@ -36,9 +38,11 @@ public with sharing class movies {
                 if (httpResponse.getStatusCode() == 200 ) {  
                     strResponse = httpResponse.getBody();  
                 } 
+
                 else {  
                     throw new CalloutException(httpResponse.getBody());  
                 }   
+
             } 
             catch(Exception ex) {  
                 throw ex;  
@@ -46,8 +50,10 @@ public with sharing class movies {
         } 
 
         if(!String.isBlank(strResponse)) {
+
             wResp  = (List<responseWrapper1>)JSON.deserialize(strResponse, List<responseWrapper1>.class);
             System.debug('mapJsonData ===> '+wResp);
+
         }
     
         return wResp;
@@ -56,51 +62,68 @@ public with sharing class movies {
     
     @AuraEnabled
     public static string postMovies(String movieName){
-        
+
       System.debug('movieName'+ movieName);
+
+      list<responseWrapper1> wResp = new list<responseWrapper1>();
+      String strResponse = null;
+
+      String strEndPointURL = 'https://5f6f70baadc24200166e10cf.mockapi.io/api/Check';
+
+      if(String.isNotBlank(strEndPointURL)) {
+
+          HttpRequest httpRequest = new HttpRequest();  
+          httpRequest.setEndpoint(strEndPointURL);
+
+          Map<String, String> jinp = new Map<String, String>();
+                     jinp.put('Movie','Service'); 
+
+                    String jsonInput = JSON.serialize(jinp);
+
+        //   String body = '{' ;
+        //          body += '  "Movie" : "cvfsgvdfbgd",' ;
+        //          body += '}';
+
+          httpRequest.setBody(jsonInput);
+
+          httpRequest.setMethod('POST');   
+          
+          httpRequest.setHeader('Content-Type', 'application/json');
+        //   httpRequest.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());        
+        //   httpRequest.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId()); 
+          
+          try {  
+              
+              Http http = new Http();   
+              HttpResponse httpResponse = http.send(httpRequest);  
+
+              while(httpResponse.getStatusCode() == 302) {
+                  httpRequest.setEndpoint(httpResponse.getHeader('Location'));
+                  httpResponse = new Http().send(httpRequest);
+              }
+
+              if (httpResponse.getStatusCode() == 200 ) {  
+                  strResponse = httpResponse.getBody();  
+              } 
+
+              else {  
+                  throw new CalloutException(httpResponse.getBody());  
+              }   
+
+          } 
+          catch(Exception ex) {  
+              throw ex;  
+          }  
+      } 
+
+    //   if(!String.isBlank(strResponse)) {
+
+    //       wResp  = (List<responseWrapper1>)JSON.deserialize(strResponse, List<responseWrapper1>.class);
+    //       System.debug('mapJsonData ===> '+wResp);
+
+    //   }
 
       return 'done';
     }
-    // @AuraEnabled
-    // public static list<responseWrapper1> postDataOfMovies(String Name, String actor_Name){
-
-
-    //     list<responseWrapper1> wResp = new list<responseWrapper1>();
-    //     String strResponse = null;
-    //     if(String.isNotBlank(strEndPointURL)) {
-    //         HttpRequest httpRequest = new HttpRequest();  
-    //         httpRequest.setEndpoint(strEndPointURL); // 
-    //         httpRequest.setBody(body);
-    //         httpRequest.setMethod('POST');   
-    //         httpRequest.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());        
-    //         httpRequest.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId()); 
-            
-    //         try {  
-    //             Http http = new Http();   
-    //             HttpResponse httpResponse = http.send(httpRequest);  
-
-    //             while(httpResponse.getStatusCode() == 302) {
-    //                 httpRequest.setEndpoint(httpResponse.getHeader('Location'));
-    //                 httpResponse = new Http().send(httpRequest);
-    //             }
-
-    //             if (httpResponse.getStatusCode() == 200 ) {  
-    //                 strResponse = httpResponse.getBody();  
-    //             } 
-    //             else {  
-    //                 throw new CalloutException(httpResponse.getBody());  
-    //             }   
-    //         } 
-    //         catch(Exception ex) {  
-    //             throw ex;  
-    //         }  
-    //     } 
-
-    //     if(!String.isBlank(strResponse)) {
-    //         wResp  = (List<responseWrapper1>)JSON.deserialize(strResponse, List<responseWrapper1>.class);
-    //         System.debug('mapJsonData ===> '+wResp);
-    //     }
     
-    //     return wResp;
-    // }
 }
